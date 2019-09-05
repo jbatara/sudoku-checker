@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Wed Sep 04 2019 18:02:06 GMT-0700 (Pacific Daylight Time)
-
-module.exports = function(config) {
+const webpackConfig = require('./webpack.config.js');
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jquery-3.2.1','jasmine'],
+    frameworks: ['jquery-3.2.1', 'jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -18,11 +18,11 @@ module.exports = function(config) {
       'src/*.js',
       'spec/*spec.js'
     ],
+    webpack: webpackConfig,
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
@@ -32,6 +32,14 @@ module.exports = function(config) {
       'spec/*spec.js': ['webpack', 'sourcemap']
     },
 
+    plugins: [
+      'karma-jquery',
+      'karma-webpack',
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-jasmine-html-reporter',
+      'karma-sourcemap-loader'
+    ],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
