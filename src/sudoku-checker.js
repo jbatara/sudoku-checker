@@ -59,24 +59,24 @@ Sudoku.prototype.checkSudokuSquare = function () {
   //checks each square to see if the charcters are unique
   var sudoku = this;
   for (var i = 0; i < 9; i += 3) {
-      for (var j = 1; j < 10; j += 3) {
-          var k = j + 1;
-          var l = j + 2;
-          var a = [];
-          a.push(sudoku["row" + j][i]);
-          a.push(sudoku["row" + j][i + 1]);
-          a.push(sudoku["row" + j][i + 2]);
-          a.push(sudoku["row" + k][i]);
-          a.push(sudoku["row" + k][i + 1]);
-          a.push(sudoku["row" + k][i + 2]);
-          a.push(sudoku["row" + l][i]);
-          a.push(sudoku["row" + l][i + 1]);
-          a.push(sudoku["row" + l][i + 2]);
+    for (var j = 1; j < 10; j += 3) {
+      var k = j + 1;
+      var l = j + 2;
+      var a = [];
+      a.push(sudoku["row" + j][i]);
+      a.push(sudoku["row" + j][i + 1]);
+      a.push(sudoku["row" + j][i + 2]);
+      a.push(sudoku["row" + k][i]);
+      a.push(sudoku["row" + k][i + 1]);
+      a.push(sudoku["row" + k][i + 2]);
+      a.push(sudoku["row" + l][i]);
+      a.push(sudoku["row" + l][i + 1]);
+      a.push(sudoku["row" + l][i + 2]);
 
-          if (a.slice(1, ).includes(a[0])) {
-              return false;
-          }
+      if (a.slice(1,8).includes(a[0])) {
+        return false;
       }
+    }
   }
   return true;
-  };
+};
