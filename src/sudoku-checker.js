@@ -37,7 +37,7 @@ Sudoku.prototype.checkSudokuRow = function () {
   //checks row by row to make sure that each item of the row is unique
   var sudoku = this;
   for (var i = 0; i < 9; i++) {
-    if (sudoku["row" + i][0] === sudoku["row" + i][1] || sudoku["row" + i][2] || sudoku["row" + i][3] || sudoku["row" + i][4] || sudoku["row" + i][5] || sudoku["row" + i][6] || sudoku["row" + i][7] || sudoku["row" + i][8]) {
+    if (sudoku["row" + i].slice(1, 8).includes(sudoku["row" + i][0])) {
       return false;
     }
   }
@@ -48,11 +48,16 @@ Sudoku.prototype.checkSudokuColumn = function () {
   //checks column by column to make sure that each item of the row is unique
   var sudoku = this;
   for (var i = 0; i < 9; i++) {
-    if (sudoku.row1[i] === sudoku.row2[i] || sudoku.row3[i] || sudoku.row4[i] || sudoku.row5[i] || sudoku.row6[i] || sudoku.row7[i] || sudoku.row8[i]) {
+    var newArray = [];
+    for (var j = 1; j < 10; j++) {
+      newArray.push(sudoku["row" + j][i]);
+    }
+    if (newArray.slice(1, 8).includes(newArray[0])) {
       return false;
+    } else {
+      return true;
     }
   }
-  return true;
 };
 
 Sudoku.prototype.checkSudokuSquare = function () {
@@ -73,7 +78,7 @@ Sudoku.prototype.checkSudokuSquare = function () {
       a.push(sudoku["row" + l][i + 1]);
       a.push(sudoku["row" + l][i + 2]);
 
-      if (a.slice(1,8).includes(a[0])) {
+      if (a.slice(1, 8).includes(a[0])) {
         return false;
       }
     }
